@@ -50,16 +50,94 @@ async function fetchJson(url, headers, method = 'GET', bodyObject = undefined, e
     }
 }
 
-function currentEntity(use) {
+function entityContext(use) {
     entity = use;
 }
 
-function tv(name, order = 0) {
-    return item(name, order, entity?.texts)?.value ?? '';
+function tv(name, order = 0, from = entity) {
+    return item(name, order, from?.texts)?.value ?? '';
 }
 
-function textItem(name, order = 0) {
-    return item(name, order, entity?.texts);
+function textItem(name, order = 0, from = entity) {
+    return item(name, order, from?.texts);
+}
+
+function mv(name, order = 0, from = entity) {
+    return item(name, order, from?.markdowns)?.value ?? '';
+}
+
+function markdownItem(name, order = 0, from = entity) {
+    return item(name, order, from?.markdowns);
+}
+
+/**
+ * Short alias function for template value accessor function
+ * @param name of the template item
+ * @param order (number of the template item)
+ * @param from entity or defaults to the current entity
+ * @returns {*|string}
+ */
+function vv(name, order = 0, from = entity) {
+    return item(name, order, from?.templates)?.value ?? '';
+}
+
+/**
+ * Accessor for template item
+ * @param name of the item
+ * @param order (number of the template item)
+ * @param from entity or defaults to the current entity
+ * @returns {*|undefined}
+ */
+function templateItem(name, order = 0, from = entity) {
+    return item(name, order, from?.templates);
+}
+
+function zv(name, order = 0, from = entity) {
+    return item(name, order, from?.dateTimes)?.value ?? '';
+}
+
+function dateTimeItem(name, order = 0, from = entity) {
+    return item(name, order, from?.dateTimes);
+}
+
+function dv(name, order = 0, from = entity) {
+    return item(name, order, from?.doubles)?.value ?? '';
+}
+
+function doubleItem(name, order = 0, from = entity) {
+    return item(name, order, from?.doubles);
+}
+
+function bv(name, order = 0, from = entity) {
+    return item(name, order, from?.booleans)?.value ?? '';
+}
+
+function booleanItem(name, order = 0, from = entity) {
+    return item(name, order, from?.booleans);
+}
+
+function imageItem(name, order = 0, from = entity) {
+    return item(name, order, from?.images);
+}
+
+function lv(name, order = 0, from = entity) {
+    return item(name, order, from?.longs)?.value ?? '';
+}
+
+function longItem(name, order = 0, from = entity) {
+    return item(name, order, from?.longs);
+}
+
+function latv(name, order = 0, from = entity) {
+    return item(name, order, from?.latLongs)?.latitude ?? '';
+}
+
+function longv(name, order = 0, from = entity) {
+    return item(name, order, from?.latLongs)?.longitude ?? '';
+}
+
+function latLongItem(name, order = 0, from = entity) {
+    return item(name, order, from?.latLongs);
 }
 
 function item(name, order = 0, items) {
@@ -79,5 +157,13 @@ export {
     fetchOwnerCompany,
     readEntityView,
     tv, textItem,
-    currentEntity,
+    mv, markdownItem,
+    vv, templateItem,
+    zv, dateTimeItem,
+    dv, doubleItem,
+    bv, booleanItem,
+    imageItem,
+    lv, longItem,
+    latv, longv, latLongItem,
+    entityContext,
 };
