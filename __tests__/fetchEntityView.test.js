@@ -1,15 +1,15 @@
 import {
     CONFIG as baackConfig,
     readEntityView,
-    tv, textItem,
-    mv, markdownItem,
-    vv, templateItem,
-    zv, dateTimeItem,
-    dv, doubleItem,
-    bv, booleanItem,
+    textValue, textItem,
+    markdownValue, markdownItem,
+    templateValue, templateItem,
+    dateTimeValue, dateTimeItem,
+    doubleValue, doubleItem,
+    booleanValue, booleanItem,
     imageItem,
-    lv, longItem,
-    latv, longv, latLongItem,
+    longValue, longItem,
+    latitudeValue, longitudeValue, latLongItem,
     entityContext,
 } from '../src/index.js';
 
@@ -21,8 +21,8 @@ test('Test fetching home page content entity', async () => {
     expect(entity.variant).toEqual('');
     expect(entity.language).toEqual('en-GB');
     entityContext(entity);
-    expect(tv('title')).toBeDefined();
-    expect(tv('title')).not.toEqual('');
+    expect(textValue('title')).toBeDefined();
+    expect(textValue('title')).not.toEqual('');
 
 });
 
@@ -37,13 +37,13 @@ test('Test fetching fails with invalid API key', async () => {
 test('Test when entity context not set undefined value is empty', async () => {
    entityContext(undefined);
    // calling t[ext]v[alue] returns empty as no current entity context
-    expect(tv('title')).toEqual('');
+    expect(textValue('title')).toEqual('');
 });
 
 test('Test reading undefined value returns empty', async () => {
    let entity = await readEntityView('/test');
    entityContext(entity);
-   expect(tv('unknown_value')).toEqual('');
+   expect(textValue('unknown_value')).toEqual('');
 });
 
 test('Test retrieving the full text item from the name', async () => {
@@ -57,18 +57,18 @@ test('Test retrieving the full text item from the name', async () => {
 test('Test retrieving the markdown content from a page with a markdown body', async () => {
    let entity = await readEntityView('/test');
    entityContext(entity);
-   expect(mv('body')).toBeDefined();
-   expect(mv('body')).toContain('<h1>Some title</h1>');
-   expect(mv('body')).toEqual(markdownItem('body').value);
+   expect(markdownValue('body')).toBeDefined();
+   expect(markdownValue('body')).toContain('<h1>Some title</h1>');
+   expect(markdownValue('body')).toEqual(markdownItem('body').value);
    expect(markdownItem('body').urn).toBeDefined();
 });
 
 test('Test retrieving rendered template items', async () => {
     let entity = await readEntityView('/test');
     entityContext(entity);
-    expect(vv('template')).toBeDefined();
-    expect(vv('template')).toContain('Hello Template World!');
-    expect(vv('template')).toEqual(templateItem('template').value);
+    expect(templateValue('template')).toBeDefined();
+    expect(templateValue('template')).toContain('Hello Template World!');
+    expect(templateValue('template')).toEqual(templateItem('template').value);
     expect(templateItem('template').sortOrder).toEqual(0);
     expect(templateItem('template').urn).toBeDefined();
 });
@@ -76,45 +76,45 @@ test('Test retrieving rendered template items', async () => {
 test('Test retrieving date time item', async () => {
    let entity = await readEntityView('/test');
    entityContext(entity);
-   expect(zv('birthday')).toBeDefined();
-   expect(zv('birthday')).toEqual('2025-06-11T00:00:00');
-   expect(zv('birthday')).toEqual(dateTimeItem('birthday').value);
+   expect(dateTimeValue('birthday')).toBeDefined();
+   expect(dateTimeValue('birthday')).toEqual('2025-06-11T00:00:00');
+   expect(dateTimeValue('birthday')).toEqual(dateTimeItem('birthday').value);
 });
 
 test('Test retrieving a double value item', async () => {
    let entity = await readEntityView('/test');
    entityContext(entity);
-   expect(dv('pi')).toBeDefined();
-   expect(dv('pi')).toEqual(3.14);
-   expect(dv('pi')).toEqual(doubleItem('pi').value);
+   expect(doubleValue('pi')).toBeDefined();
+   expect(doubleValue('pi')).toEqual(3.14);
+   expect(doubleValue('pi')).toEqual(doubleItem('pi').value);
 });
 
 test('Test retrieving boolean value item', async () => {
     let entity = await readEntityView('/test');
     entityContext(entity);
-    expect(bv('tested')).toBeDefined();
-    expect(bv('tested')).toEqual(true);
-    expect(bv('tested')).toEqual(booleanItem('tested').value);
+    expect(booleanValue('tested')).toBeDefined();
+    expect(booleanValue('tested')).toEqual(true);
+    expect(booleanValue('tested')).toEqual(booleanItem('tested').value);
 });
 
 test('Test retrieving long integer value item', async () => {
    let entity = await readEntityView('/test');
    entityContext(entity);
-   expect(lv('max')).toBeDefined();
-   expect(lv('max')).toEqual(9223372036854775807);
-   expect(lv('max')).toEqual(longItem('max').value);
+   expect(longValue('max')).toBeDefined();
+   expect(longValue('max')).toEqual(9223372036854775807);
+   expect(longValue('max')).toEqual(longItem('max').value);
 });
 
 test('Test retrieving latitude longitude value item', async () => {
     let entity = await readEntityView('/test');
     entityContext(entity);
-    expect(latv('goog')).toBeDefined();
-    expect(latv('goog')).toEqual(51.49491442751952);
-    expect(longv('goog')).toEqual(-0.146478288356193);
-    expect(longv('goog')).toBeDefined();
+    expect(latitudeValue('goog')).toBeDefined();
+    expect(latitudeValue('goog')).toEqual(51.49491442751952);
+    expect(longitudeValue('goog')).toEqual(-0.146478288356193);
+    expect(longitudeValue('goog')).toBeDefined();
     console.log(latLongItem('goog'));
-    expect(latv('goog')).toEqual(latLongItem('goog').latitude);
-    expect(longv('goog')).toEqual(latLongItem('goog').longitude);
+    expect(latitudeValue('goog')).toEqual(latLongItem('goog').latitude);
+    expect(longitudeValue('goog')).toEqual(latLongItem('goog').longitude);
 });
 
 

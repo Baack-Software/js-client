@@ -54,7 +54,7 @@ function entityContext(use) {
     entity = use;
 }
 
-function tv(name, order = 0, from = entity) {
+function textValue(name, order = 0, from = entity) {
     return item(name, order, from?.texts)?.value ?? '';
 }
 
@@ -62,7 +62,7 @@ function textItem(name, order = 0, from = entity) {
     return item(name, order, from?.texts);
 }
 
-function mv(name, order = 0, from = entity) {
+function markdownValue(name, order = 0, from = entity) {
     return item(name, order, from?.markdowns)?.value ?? '';
 }
 
@@ -77,7 +77,7 @@ function markdownItem(name, order = 0, from = entity) {
  * @param from entity or defaults to the current entity
  * @returns {*|string}
  */
-function vv(name, order = 0, from = entity) {
+function templateValue(name, order = 0, from = entity) {
     return item(name, order, from?.templates)?.value ?? '';
 }
 
@@ -92,7 +92,7 @@ function templateItem(name, order = 0, from = entity) {
     return item(name, order, from?.templates);
 }
 
-function zv(name, order = 0, from = entity) {
+function dateTimeValue(name, order = 0, from = entity) {
     return item(name, order, from?.dateTimes)?.value ?? '';
 }
 
@@ -100,7 +100,7 @@ function dateTimeItem(name, order = 0, from = entity) {
     return item(name, order, from?.dateTimes);
 }
 
-function dv(name, order = 0, from = entity) {
+function doubleValue(name, order = 0, from = entity) {
     return item(name, order, from?.doubles)?.value ?? '';
 }
 
@@ -108,7 +108,7 @@ function doubleItem(name, order = 0, from = entity) {
     return item(name, order, from?.doubles);
 }
 
-function bv(name, order = 0, from = entity) {
+function booleanValue(name, order = 0, from = entity) {
     return item(name, order, from?.booleans)?.value ?? '';
 }
 
@@ -120,7 +120,7 @@ function imageItem(name, order = 0, from = entity) {
     return item(name, order, from?.images);
 }
 
-function lv(name, order = 0, from = entity) {
+function longValue(name, order = 0, from = entity) {
     return item(name, order, from?.longs)?.value ?? '';
 }
 
@@ -128,11 +128,11 @@ function longItem(name, order = 0, from = entity) {
     return item(name, order, from?.longs);
 }
 
-function latv(name, order = 0, from = entity) {
+function latitudeValue(name, order = 0, from = entity) {
     return item(name, order, from?.latLongs)?.latitude ?? '';
 }
 
-function longv(name, order = 0, from = entity) {
+function longitudeValue(name, order = 0, from = entity) {
     return item(name, order, from?.latLongs)?.longitude ?? '';
 }
 
@@ -156,14 +156,14 @@ export {
     CONFIG,
     fetchOwnerCompany,
     readEntityView,
-    tv, textItem,
-    mv, markdownItem,
-    vv, templateItem,
-    zv, dateTimeItem,
-    dv, doubleItem,
-    bv, booleanItem,
+    textValue, textItem,
+    markdownValue, markdownItem,
+    templateValue, templateItem,
+    dateTimeValue, dateTimeItem,
+    doubleValue, doubleItem,
+    booleanValue, booleanItem,
     imageItem,
-    lv, longItem,
-    latv, longv, latLongItem,
+    longValue, longItem,
+    latitudeValue, longitudeValue, latLongItem,
     entityContext,
 };
