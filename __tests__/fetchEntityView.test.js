@@ -112,7 +112,6 @@ test('Test retrieving latitude longitude value item', async () => {
     expect(latitudeValue('goog')).toEqual(51.49491442751952);
     expect(longitudeValue('goog')).toEqual(-0.146478288356193);
     expect(longitudeValue('goog')).toBeDefined();
-    console.log(latLongItem('goog'));
     expect(latitudeValue('goog')).toEqual(latLongItem('goog').latitude);
     expect(longitudeValue('goog')).toEqual(latLongItem('goog').longitude);
 });

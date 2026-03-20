@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1773662584248" clover="3.2.0">
-  <project timestamp="1773662584248" name="All files">
+<coverage generated="1774030860505" clover="3.2.0">
+  <project timestamp="1774030860505" name="All files">
     <metrics statements="47" coveredstatements="42" conditionals="75" coveredconditionals="59" methods="23" coveredmethods="22" elements="145" coveredelements="123" complexity="0" loc="47" ncloc="47" packages="1" files="1" classes="1"/>
     <file name="index.js" path="/home/dak/dev/github/js-client/src/index.js">
       <metrics statements="47" coveredstatements="42" conditionals="75" coveredconditionals="59" methods="23" coveredmethods="22"/>
