@@ -27,8 +27,8 @@ To give an example of the usage for a very simple React app you may include the 
 ```
 import {    
     readEntityView,
-    textvalue, // Text value shorthand function
-    markdownvValue // Markdown value shorthand function
+    textValue, // Text value shorthand function
+    markdownValue // Markdown value shorthand function
 } from baack-client;
 
 export default function MyApp() {
